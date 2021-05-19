@@ -25,11 +25,6 @@ async function validateCreate(email) {
 async function validateUpdate(email, id) {
     let errors = validate(email)
 
-    const foundEmail = await Email.getEmailById(id)
-    if (!foundEmail) {
-        errors.push("Email inválido.")
-    }
-
     const duplicate = await Email.getEmailByAddress(email.address)
     if (duplicate && duplicate._id != id) {
         errors.push("Endereço de email já existente.")

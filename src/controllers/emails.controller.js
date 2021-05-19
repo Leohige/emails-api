@@ -33,6 +33,12 @@ async function create(req, res, _){
 }
 
 async function update(req, res, _){
+    const foundEmail = await Email.getEmailById(req.params.id)
+    if (!foundEmail) {
+        res.status(404).json({ error: "Email não encontrado." })
+        return
+    }
+
     const errors = await EmailValidator.validateUpdate(req.body, req.params.id)
     if (errors.length > 0) {
         res.status(422).json(errors)
