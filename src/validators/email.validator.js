@@ -1,12 +1,18 @@
 const validator = require("validator")
 const Email = require("../models/email")
 
-async function validateCreate(email) {
+function validate(email) {
     let errors = []
 
     if (!validator.isEmail(email.address || "")) {
         errors.push("Endereço de email inválido.")
     }
+
+    return errors
+}
+
+async function validateCreate(email) {
+    let errors = validate(email)
 
     const duplicate = await Email.getEmailByAddress(email.address)
     if (duplicate) {
@@ -17,14 +23,11 @@ async function validateCreate(email) {
 }
 
 async function validateUpdate(email, id) {
-    let errors = []
+    let errors = validate(email)
 
-    if (validator.isEmpty(id)) {
+    const foundEmail = await Email.getEmailById(id)
+    if (!foundEmail) {
         errors.push("Email inválido.")
-    }
-
-    if (!validator.isEmail(email.address || "")) {
-        errors.push("Endereço de email inválido.")
     }
 
     const duplicate = await Email.getEmailByAddress(email.address)
