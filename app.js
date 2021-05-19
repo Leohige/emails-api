@@ -11,4 +11,4 @@ app.listen(port, hostname, () => {
   console.log(`Email Api app listening at http://${hostname}:${port}`)
 })
 
-app.use("/api/v1", routes);
+app.use("/api/v1", routes)

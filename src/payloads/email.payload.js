@@ -7,4 +7,4 @@ const emailPayload = ({ _id, address, created_by, updated_by, created_at, update
     updated_at
 })
 
-module.exports = emailPayload;
+module.exports = emailPayload
