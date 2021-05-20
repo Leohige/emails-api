@@ -33,11 +33,9 @@ async function getEmailByAddress(address) {
     return email
 }
 
-async function createEmail(body, ip) {
+async function createEmail(body) {
     const newEmail = {
         address: body.address,
-        created_by: ip,
-        updated_by: null,
         created_at: new Date(),
         updated_at: null
     }
@@ -52,10 +50,9 @@ async function createEmail(body, ip) {
     return email
 }
 
-async function updateEmail(body, ip, id) {
+async function updateEmail(body, id) {
     const updateEmail = {
         address: body.address,
-        updated_by: ip,
         updated_at: new Date()
     }
 

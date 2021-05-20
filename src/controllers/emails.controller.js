@@ -28,7 +28,7 @@ async function create(req, res, _){
         return
     }
 
-    const email =  await Email.createEmail(req.body, req.ip)
+    const email =  await Email.createEmail(req.body)
     res.status(201).json(EmailPayload(email))
 }
 
@@ -45,7 +45,7 @@ async function update(req, res, _){
         return
     }
 
-    const email =  await Email.updateEmail(req.body, req.ip, req.params.id)
+    const email =  await Email.updateEmail(req.body, req.params.id)
     res.status(201).json(EmailPayload(email))
 }
 
